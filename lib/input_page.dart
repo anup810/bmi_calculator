@@ -18,7 +18,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
-  int height;
+  int height = 180;
   // Color maleCardColor = inActiveCardColor;
   // Color femaleCardColor = inActiveCardColor;
   // Color otherCardColor = inActiveCardColor;
@@ -122,11 +122,12 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
+              colour: kActiveCardColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    height.toString(),
+                    'HEIGHT',
                     style: kLabelTextStyle,
                   ),
                   Row(
@@ -135,7 +136,7 @@ class _InputPageState extends State<InputPage> {
                     textBaseline: TextBaseline.alphabetic,
                     children: [
                       Text(
-                        '180',
+                        height.toString(),
                         style: kNumberTextStyle,
                       ),
                       Text('cm', style: kLabelTextStyle),
@@ -155,7 +156,6 @@ class _InputPageState extends State<InputPage> {
                   ),
                 ],
               ),
-              colour: kActiveCardColor,
             ),
           ),
           Expanded(
