@@ -1,12 +1,13 @@
-import 'dart:math';
 import 'result_page.dart';
-
+import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'reusable_card.dart';
-import 'reusable_icon.dart';
-import 'constants.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
+import 'package:bmi_calculator/components/reusable_icon.dart';
+import '../constants.dart';
+import 'package:bmi_calculator/components/round_icon_button.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
 
 enum Gender {
   male,
@@ -24,40 +25,6 @@ class _InputPageState extends State<InputPage> {
   int height = 180;
   int weight = 50;
   int age = 10;
-  // Color maleCardColor = inActiveCardColor;
-  // Color femaleCardColor = inActiveCardColor;
-  // Color otherCardColor = inActiveCardColor;
-  //
-  // void updateGender(Gender seletedGender) {
-  //   if (seletedGender == Gender.male) {
-  //     if (maleCardColor == inActiveCardColor) {
-  //       maleCardColor = activeCardColor;
-  //       femaleCardColor = inActiveCardColor;
-  //       otherCardColor = inActiveCardColor;
-  //     }
-  //   } else {
-  //     maleCardColor = inActiveCardColor;
-  //   }
-  //
-  //   if (seletedGender == Gender.female) {
-  //     if (femaleCardColor == inActiveCardColor) {
-  //       femaleCardColor = activeCardColor;
-  //       maleCardColor = inActiveCardColor;
-  //       otherCardColor = inActiveCardColor;
-  //     }
-  //   } else {
-  //     femaleCardColor = inActiveCardColor;
-  //   }
-  //   if (seletedGender == Gender.other) {
-  //     if (otherCardColor == inActiveCardColor) {
-  //       otherCardColor = activeCardColor;
-  //       maleCardColor = inActiveCardColor;
-  //       femaleCardColor = inActiveCardColor;
-  //     } else {
-  //       otherCardColor = inActiveCardColor;
-  //     }
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -260,44 +227,25 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
+          BottomButton(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ResultPage()));
+              CalculatorBrain cal =
+                  CalculatorBrain(height: height, weight: weight);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(
+                    bmiResult: cal.calculateBMI(),
+                    bmiText: cal.getResult(),
+                    interpretation: cal.getInterpretation(),
+                  ),
+                ),
+              );
             },
-            child: Container(
-              child: Text(
-                'CALCULATE',
-                style: kLabelTextStyle,
-              ),
-              margin: EdgeInsets.only(top: 10),
-              width: double.infinity,
-              color: kBottomContainerColor,
-              height: kBottomContainerHeight,
-            ),
+            buttonText: 'CALCULATE',
           ),
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({@required this.icon, @required this.onPressed});
-  final IconData icon;
-  final Function onPressed;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onPressed,
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      elevation: 6.0,
-      fillColor: Color(0xFF4C4F5E),
-      shape: CircleBorder(),
     );
   }
 }

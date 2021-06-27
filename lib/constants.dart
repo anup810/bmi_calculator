@@ -13,3 +13,27 @@ const kNumberTextStyle = TextStyle(
   fontSize: 50,
   fontWeight: FontWeight.w900,
 );
+
+const kLargeTextStyle = TextStyle(
+  fontSize: 25,
+  fontWeight: FontWeight.bold,
+);
+
+const kTitleTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 50.0,
+);
+
+const kResultTextStyle = TextStyle(
+  fontSize: 22,
+  fontWeight: FontWeight.bold,
+  color: Color(0xFF21AF67),
+);
+
+const kBMITextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 100,
+);
+const kBodyTextStyle = TextStyle(
+  fontSize: 22,
+);
